@@ -11,7 +11,7 @@ nodes = queue.Queue()
 def search(name):
     while not nodes.empty():
         node =  nodes.get()
-        print (name +"tries to connect to"+ node)
+        print (name +" "+ node)
         # 0 = found, 1 = not found
         command = "python3 distsys16/ex2/chase_cat.py S "+name
         r = subprocess.call(["ssh", node, command])
