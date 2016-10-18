@@ -4,9 +4,6 @@ import argparse
 import sys
 import socket
 
-
-# connect to node bla do action foo
-
 def attack(name):
     # connect to mouse & send meow
     # wait for ouch 8 seconds
@@ -14,13 +11,16 @@ def attack(name):
     f = open("port_number")
     portno = int(f.readline().rstrip())
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((socket.gethostname(), portno))
-    channel = s.makefile("rw")
-    channel.write("MEOW")
-    channel.flush()
-    time.sleep(8)
-    msg = channel.readline()
-    print(msg)
+    try:
+        s.connect((socket.gethostname(), portno))
+        channel = s.makefile("rw")
+        channel.write("MEOW")
+        channel.flush()
+        time.sleep(8)
+        msg = channel.readline()
+        print(msg)
+    except Exception as e:
+        print(str(e))
 
 def search(name):
     # check if mouse.py is runinng under my username and sleep for 12 seconds
