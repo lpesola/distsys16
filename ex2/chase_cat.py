@@ -18,7 +18,7 @@ def search(name):
     # if yes, send message F to cordy
     # else exit code 2
 
-    r = subprocess.run("ps -u lpesola | grep mouse.py", shell=True)
+    r = subprocess.run("ps -a | grep mouse.py", shell=True)
     time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r.returncode == "0":
@@ -29,7 +29,7 @@ def search(name):
 
 # main begins
 
-parser = argparse.ArgumentParser
+parser = argparse.ArgumentParser()
 parser.add_argument("cmd")
 parser.add_argument("cat")
 args = parser.parse_args()
