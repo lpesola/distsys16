@@ -15,7 +15,7 @@ def attack(name):
     portno = int(f.readline().rstrip())
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((socket.gethostname(), portno))
-    channel = s.makefile()
+    channel = s.makefile("rw")
     channel.write("MEOW")
     channel.flush()
     time.sleep(8)

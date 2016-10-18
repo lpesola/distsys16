@@ -14,7 +14,7 @@ lock = threading.Lock
 def die(s, addr):
 	f = s.makefile()
 	msg = f.readline()
-	if msg == "meow":
+	if msg == "MEOW":
 		# attack on the mouse "should take 6 seconds" so we wait (though since "the cat will wait 8 seconds for the ouch message"
 		# it is a bit unclear whether this 6 seconds is already included in the cat's 8 second wait)
 		time.sleep(6)
