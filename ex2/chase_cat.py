@@ -36,7 +36,7 @@ def attack(name):
             print("listy connected")
             msg = "G "+socket.gethostname()+" "+name
             f = s.makefile("w")
-            f.writable(msg)
+            f.write(msg)
             f.flush()
             print("sent "+msg)
 
