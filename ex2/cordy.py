@@ -22,7 +22,7 @@ def search(name):
 # main starts here
 n = open("ukkonodes", "r")
 for line in n:
-    nodes.put(line)
+    nodes.put(line.rstrip())
 
 catty = threading.Thread(target=search, args=("catty",))
 jazzy = threading.Thread(target=search, args=("jazzy",))
