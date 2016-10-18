@@ -16,7 +16,9 @@ def die(s, addr):
     # it is a bit unclear whether this 6 seconds is already included in the cat's 8 second wait)
     print("in thread, sleep")
     time.sleep(6)
+    print("woke up")
     f = s.makefile("rw")
+    print("now has a file")
     msg = f.readline()
     print("read a line")
     if msg == "MEOW":

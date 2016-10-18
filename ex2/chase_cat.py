@@ -16,7 +16,6 @@ def attack(name):
         channel = s.makefile("rw")
         channel.write("MEOW")
         channel.flush()
-        print("meow, going to sleep")
         time.sleep(8)
         print("wake up, read ouch?")
         msg = channel.readline()
