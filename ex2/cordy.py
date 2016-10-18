@@ -40,24 +40,24 @@ jazzy.start()
 # G -> quit
 
 # assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
-cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg") # read text is default mode for open, we don't need to write anything
-# while True:
-#     msg = cmsg.read()
-#     if msg == '':
-#         continue
-#     else:
-#         msg = msg.split(" ")
-#         node = msg[1]
-#         cat = msg[2]
-#         if msg[0] == "F":
-#             # mouse found, make other cat search the same node
-#             break
-#         elif msg[0] == "G":
-#             # cat got the mouse, stop
-#             pass
-#             sys.exit(cat+" caught the mouse in node "+node)
-#         else:
-#             print ("thats weird")
-#             break
+cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
+while True:
+     msg = cmsg.readLine()
+     if msg == '':
+         continue
+     else:
+         msg = msg.split(" ")
+         node = msg[1]
+         cat = msg[2]
+         if msg[0] == "F":
+             # mouse found, make other cat search the same node
+             print("mouse was found")
+         elif msg[0] == "G":
+             # cat got the mouse, stop
+             pass
+             sys.exit(cat+" caught the mouse in node "+node)
+         else:
+             print ("thats weird")
+             break
 
 
