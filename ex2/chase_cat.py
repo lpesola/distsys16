@@ -4,18 +4,26 @@ import argparse
 import sys
 import socket
 
+portno = 0
+
+def sendmsg(msg):
+    f = open("listy_location")
+    listy = f.readline().rstrip()
+    ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    global portno
+    ls.connect((listy, portno))
+    lf = ls.makefile("w")
+    lf.write(msg)
+    lf.flush()
+    print("sent " + msg)
+
 def attack(name):
     # connect to mouse & send meow
     # wait for ouch 8 seconds
     # send message G
-    f = open("port_number")
-    portno = int(f.readline().rstrip())
-    f.close()
-    f = open("listy_location")
-    listy = f.readline().rstrip()
-    print(listy)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        global portno
         s.connect((socket.gethostname(), portno))
         channel = s.makefile("rw")
         channel.write("MEOW")
@@ -30,32 +38,30 @@ def attack(name):
             except Exception as e:
                 print(str(e))
             print("close old connection")
-            ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            ls.connect((listy, portno))
-            print("listy connected")
             msg = "G "+socket.gethostname()+" "+name
-            lf = ls.makefile("w")
-            lf.write(msg)
-            lf.flush()
-            print("sent "+msg)
+            sendmsg(msg)
+
     except Exception as e:
         print(str(e))
 
 def search(name):
-    # check if mouse.py is runinng under my username and sleep for 12 seconds
+    # check if mouse.py is runinng under current user and sleep for 12 seconds
     # if yes, send message F to cordy
     # else exit code 2
     uname = subprocess.check_output("whoami").decode("utf-8").rstrip()
     r = subprocess.call([" ps -u "+uname+" -f | grep '[m]ouse.py'"], shell=True)
-    time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
+    time.sleep(3) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r == 0:
-        # connect to listy, write message F
-        pass
+        msg = "F "+socket.gethostname()+" "+name
+        sendmsg(msg)
     sys.exit(r)
 
 
 # main begins
+f = open("port_number")
+portno = int(f.readline().rstrip())
+f.close()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("cmd")
