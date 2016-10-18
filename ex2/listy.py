@@ -13,7 +13,7 @@ def writemsg(cs, addr):
 # write message to cmsg
 # if message was G, quit: maybe use a condition for this?
 
-pn = open("port_number")
+pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(pn.readline().strip())
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), portno))
