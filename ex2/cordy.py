@@ -15,9 +15,12 @@ def search(name):
         # 0 = found, 1 = not found
         command = "python3 distsys16/ex2/chase_cat.py S "+name
         r = subprocess.call(["ssh", node, command])
-        print(str(r)+"\n")
-    else:
-        return
+        if r == 0:
+            return
+        elif r == 1:
+            continue
+        else:
+            sys.exit("something unexpected happened")
 
 # main starts here
 n = open("ukkonodes", "r")
