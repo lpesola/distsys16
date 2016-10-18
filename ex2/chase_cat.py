@@ -21,7 +21,7 @@ def search(name):
     r = subprocess.call(["ps -A | grep mouse.py"], shell=True)
     time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
-    if r.returncode == "0":
+    if r == "0":
         print(name+" found mouse")
         # connect to listy, write message F
     sys.exit(r.returncode)
