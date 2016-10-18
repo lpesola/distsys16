@@ -38,8 +38,8 @@ f.close()
 try:
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	s.bind((socket.gethostname(), portno))
-except:
-	print ("can't bind to port")
+except Exception as e:
+	print ("can't bind to port: "+str(e))
 
 while alive:
 	# there should be only one connection incoming for the cat
