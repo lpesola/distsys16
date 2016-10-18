@@ -38,7 +38,7 @@ def attack(name):
             f = s.makefile("w")
             f.writable(msg)
             f.flush()
-            print("sent "+msg+)
+            print("sent "+msg)
 
     except Exception as e:
         print(str(e))
