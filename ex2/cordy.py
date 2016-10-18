@@ -42,7 +42,7 @@ jazzy.start()
 # assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
-     msg = cmsg.readLine()
+     msg = cmsg.read()
      if msg == '':
          continue
      else:
