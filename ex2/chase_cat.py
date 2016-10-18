@@ -29,13 +29,6 @@ def attack(name):
         time.sleep(8)
         msg = channel.readline()
         if msg == "OUCH":
-            print("got the mouse, inform listy")
-            try:
-                f.close()
-                s.close()
-            except Exception as e:
-                print(str(e))
-            print("close old connection")
             msg = "G "+socket.gethostname()+" "+name
             sendmsg(msg)
 
