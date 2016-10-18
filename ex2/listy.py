@@ -14,7 +14,7 @@ def writemsg(cs, addr):
         if not msg:
             break
     #msg = str(msg.decode("utf-8"))
-    print (str(msg.decode("utf-8"))
+    print(str(msg.decode("utf-8")))
     global lock
     global cmsg
     lock.acquire()
