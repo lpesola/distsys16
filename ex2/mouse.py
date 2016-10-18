@@ -32,7 +32,7 @@ def die(s, addr):
 
 
 f = open("port_number", "r")
-portno = f.readline()
+portno = int(f.readline().rstrip())
 f.close()
 
 try:
