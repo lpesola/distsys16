@@ -6,7 +6,7 @@ import time
 import sys
 
 alive = True
-lock = threading.Lock
+lock = threading.Lock()
 
 
 # wait for message "meow"
