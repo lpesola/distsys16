@@ -43,7 +43,7 @@ jazzy.start()
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
      msg = cmsg.read()
-     if msg == '':
+     if msg == '' or msg == "\n":
          continue
      else:
          msg = msg.split(" ")
@@ -52,6 +52,10 @@ while True:
          if msg[0] == "F":
              # mouse found, make other cat search the same node
              print("mouse was found")
+             if cat == "catty":
+                 r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A jazzy"])
+             elif cat == "jazzy":
+                 r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
          elif msg[0] == "G":
              # cat got the mouse, stop
              pass
