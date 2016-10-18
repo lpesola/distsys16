@@ -17,6 +17,7 @@ def die(s, addr):
     time.sleep(6)
     print("woke up")
     msg = s.recv(1024)
+    msg = msg.decode("utf-8")
     print("read a line "+msg)
     if msg == "MEOW":
         f.write("ouch")
