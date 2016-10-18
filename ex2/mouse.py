@@ -6,7 +6,6 @@ import time
 import sys
 
 alive = True
-lock = threading.Lock()
 
 
 # wait for message "meow"
@@ -20,15 +19,10 @@ def die(s, addr):
     msg = str(msg.decode("utf-8"))
     print("read a line "+msg)
     if msg == "MEOW":
-        f.write("ouch")
-        f.flush()
+        s.send(b'OUCH')
         print("wrote ouch")
         global alive
-        global lock
-        lock.acquire()
-        print("got lock, not live anymore")
         alive = False
-        lock.release()
 
 # listen to the port defined in port_number for connections
 # assumption: only the one cat program doing the attack will connect so after we get the
