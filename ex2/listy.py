@@ -10,6 +10,7 @@ cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "w")
 # if message was G, quit: maybe use a condition for this?
 def writemsg(cs, addr):
     while True:
+        print("t")
         msg = cs.recv(1024)
         if not msg:
             break
