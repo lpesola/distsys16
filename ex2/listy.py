@@ -14,13 +14,15 @@ def writemsg(cs, addr):
 # if message was G, quit: maybe use a condition for this?
 
 pn = open("port_number")
-portno = pn.readline()
+portno = int(pn.readline().strip())
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), portno))
 
 # listen for incoming connections, max should be 3 (2 x F and 1 x G)
 while True:
+    print("listening")
     s.listen(3)
     (cs, addr) = s.accept()
+    print("got conn")
     ct = threading.Thread(target=writemsg, args=(cs, addr))
     ct.start()
