@@ -22,8 +22,8 @@ def search(name):
     time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r == 0:
-        print(name+" found mouse")
         # connect to listy, write message F
+        pass
     sys.exit(r)
 
 

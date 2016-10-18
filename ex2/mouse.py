@@ -42,7 +42,8 @@ except:
 	print ("can't bind to port")
 
 while alive:
-	s.listen()
+	# there should be only one connection incoming for the cat
+	s.listen(2)
 	(cs, addr) = s.accept()
 	mouset = threading.Thread(target=die, args=(cs, addr))
 	mouset.start()
