@@ -59,7 +59,7 @@ def search(name):
 
 
 # main begins
-f = open("port_number")
+f = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(f.readline().rstrip())
 f.close()
 
