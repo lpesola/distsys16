@@ -5,7 +5,7 @@ import socket
 lock = threading.Lock()
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "w")
 
-# read stream until we have the entire message
+# assumption: the message fits in 1024 bytes AND will be received at once (should hold in this case)
 # write message to cmsg
 # if message was G, quit: maybe use a condition for this?
 def writemsg(cs, addr):
@@ -14,9 +14,8 @@ def writemsg(cs, addr):
     global lock
     global cmsg
     lock.acquire()
-    print ("got lock, msg: "+msg)
-    #cmsg.write(msg)
-    #cmsg.flush()
+    cmsg.write(msg)
+    cmsg.flush()
     print("release lock")
     lock.release()
 
