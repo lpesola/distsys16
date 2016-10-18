@@ -12,7 +12,7 @@ def sendmsg(msg):
     ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     global portno
     ls.connect((listy, portno))
-    ls.send(bytes(msg))
+    ls.send(bytes(msg), "utf-8")
     print("sent " + msg)
 
 def attack(name):
