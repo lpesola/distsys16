@@ -13,7 +13,7 @@ def writemsg(cs, addr):
         msg = cs.recv(1024)
         if not msg:
             break
-    print(str(msg.decode("utf-8")))
+    msg = (str(msg.decode("utf-8")))
     global lock
     global cmsg
     lock.acquire()
