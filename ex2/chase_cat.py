@@ -18,7 +18,7 @@ def search(name):
     # if yes, send message F to cordy
     # else exit code 2
 
-    r = subprocess.call(["ps", "-a | grep mouse.py"])
+    r = subprocess.call(["ps", "-A | grep mouse.py"])
     time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r.returncode == "0":
