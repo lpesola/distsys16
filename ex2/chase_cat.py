@@ -7,6 +7,7 @@ import sys
 # connect to node bla do action foo
 
 def attack(name):
+    pass
     # connect to port
     # send meow
     # wait for reply ouch 8 seconds
