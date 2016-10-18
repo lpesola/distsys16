@@ -14,13 +14,10 @@ def die(s, addr):
     # attack on the mouse "should take 6 seconds" so we wait (though since "the cat will wait 8 seconds for the ouch message"
     # it is a bit unclear whether this 6 seconds is already included in the cat's 8 second wait)
     time.sleep(6)
-    print("woke up")
     msg = s.recv(1024)
     msg = str(msg.decode("utf-8"))
-    print("read a line "+msg)
     if msg == "MEOW":
         s.send(b'OUCH')
-        print("wrote ouch")
         global alive
         alive = False
 
@@ -40,7 +37,7 @@ except Exception as e:
     print (str(e))
 
 while alive:
-    # there should be only one connection incoming for the cat
+    # assumption: only one program ever connects to us as per the instructions only one cat will attack
     s.listen(2)
     (cs, addr) = s.accept()
     die(cs, addr)

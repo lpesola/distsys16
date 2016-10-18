@@ -10,6 +10,9 @@ def attack(name):
     # send message G
     f = open("port_number")
     portno = int(f.readline().rstrip())
+    f.close()
+    f = open("listy_location")
+    listy = f.readline().rstrip()
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         s.connect((socket.gethostname(), portno))
@@ -17,10 +20,26 @@ def attack(name):
         channel.write("MEOW")
         channel.flush()
         time.sleep(8)
-        print("wake up, read ouch?")
         msg = channel.readline()
-        print(msg)
-        print("that was the message")
+        if msg == "OUCH":
+            print("got the mouse, inform listy")
+            try:
+                f.close()
+                s.close()
+            except Exception as e:
+                print(str(e))
+            print("close old connection")
+            try:
+                s.connect((listy, portno))
+            except Exception as e:
+                print(str(e))
+            print("listy connected")
+            msg = "G "+socket.gethostname()+" "+name
+            f = s.makefile("w")
+            f.writable(msg)
+            f.flush()
+            print("sent "+msg+)
+
     except Exception as e:
         print(str(e))
 
