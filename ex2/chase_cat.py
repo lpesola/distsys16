@@ -24,7 +24,7 @@ def search(name):
     if r == "0":
         print(name+" found mouse")
         # connect to listy, write message F
-    sys.exit(r.returncode)
+    sys.exit(r)
 
 
 # main begins
