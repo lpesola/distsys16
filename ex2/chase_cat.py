@@ -17,8 +17,8 @@ def search(name):
     # check if mouse.py is runinng under my username and sleep for 12 seconds
     # if yes, send message F to cordy
     # else exit code 2
-
-    r = subprocess.call([" ps -eLf | grep '[m]ouse.py'"], shell=True)
+    uname = subprocess.check_output("whoami").decode("utf-8").rstrip()
+    r = subprocess.call([" ps -u "+uname+" -f | grep '[m]ouse.py'"], shell=True)
     time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r == 0:
