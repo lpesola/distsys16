@@ -1,18 +1,20 @@
-import queue # Queue is thread safe, ordering doesn't matter as long as the cats don't search the same nodes
+import queue
 import subprocess
 import threading
 import time # MUISTA OTTAA POIS KUN TESTI UKOLLA
 import sys
 
+# Queue is thread safe so we can use it to store the nodes the cats need to search
+# Search order doesn't matter: the important thing is that the cats don't search the same nodes
 nodes = queue.Queue()
+
 def search(name):
     while not nodes.empty():
         node =  nodes.get()
-        time.sleep(1) # MUISTA OTTAA POIS LOPULLISESTA
         print (name + node)
         # ssh lpesola@ **node** chase_cat.py S name
         # 0 = found, 1 = not found
-        #r = subprocess.run(["ssh", name], shell=True)
+        r = subprocess.run(["ssh", name], shell=True)
     else:
         return
 
