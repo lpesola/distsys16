@@ -13,6 +13,7 @@ def attack(name):
     f.close()
     f = open("listy_location")
     listy = f.readline().rstrip()
+    print(listy)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         s.connect((socket.gethostname(), portno))
@@ -29,17 +30,14 @@ def attack(name):
             except Exception as e:
                 print(str(e))
             print("close old connection")
-            try:
-                s.connect((listy, portno))
-            except Exception as e:
-                print(str(e))
+            ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            ls.connect((listy, portno))
             print("listy connected")
             msg = "G "+socket.gethostname()+" "+name
-            f = s.makefile("w")
-            f.write(msg)
-            f.flush()
+            lf = ls.makefile("w")
+            lf.write(msg)
+            lf.flush()
             print("sent "+msg)
-
     except Exception as e:
         print(str(e))
 
