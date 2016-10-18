@@ -2,16 +2,25 @@ import subprocess
 import time
 import argparse
 import sys
+import socket
 
 
 # connect to node bla do action foo
 
 def attack(name):
-    pass
-    # connect to port
-    # send meow
-    # wait for reply ouch 8 seconds
+    # connect to mouse & send meow
+    # wait for ouch 8 seconds
     # send message G
+    f = open("port_number")
+    portno = int(f.readline().rstrip())
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((socket.gethostname(), portno))
+    channel = s.makefile()
+    channel.write("MEOW")
+    channel.flush()
+    time.sleep(8)
+    msg = channel.readline()
+    print(msg)
 
 def search(name):
     # check if mouse.py is runinng under my username and sleep for 12 seconds
