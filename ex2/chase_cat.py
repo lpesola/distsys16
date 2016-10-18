@@ -18,7 +18,7 @@ def search(name):
     # else exit code 2
 
     r = subprocess.run("ps -u lpesola | grep mouse.py", shell=True)
-    time.sleep(12)
+    time.sleep(2) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
     # 0 = success, 1 = not found
     if r.returncode == "0":
         print(name+" found mouse")

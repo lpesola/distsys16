@@ -12,9 +12,10 @@ def search(name):
     while not nodes.empty():
         node =  nodes.get()
         print (name + node)
-        # ssh lpesola@ **node** chase_cat.py S name
         # 0 = found, 1 = not found
-        r = subprocess.run(["ssh", name], shell=True)
+        # using shell because it is simpler, may change this later
+        r = subprocess.run("ssh lpesola@"+node+" chase_cat.py S "+name, shell=True)
+        print(str(r)+"\n")
     else:
         return
 
@@ -28,31 +29,32 @@ jazzy = threading.Thread(target=search, args=("jazzy",))
 catty.start()
 jazzy.start()
 
-# sit pitäs kans lukee sitä filua siltä varalta että siellä ois found
+# commented out for first test run
+
+# read cmsg, wait until you find a line beginning with an F(ound the mouse) or G(ot the mouse)
 # F/G ukkoXXX catname
-# jos on found niin..
-
-cmsg = open("cmsg") # read text is default mode for open, we don't need to write anything
-
-while True:
-    msg = cmsg.read()
-    if msg == '':
-        continue
-    else:
-        msg = msg.split(" ")
-        node = msg[1]
-        cat = msg[2]
-        if msg[0] == "F":
-            # make other cat search the same node
-            break
-        elif msg[0] == "G":
-            pass
-            sys.exit(cat+" caught the mouse in node "+node)
-        else:
-            print ("thats weird")
-            break
+# F -> make other cat search the same node
+# G -> quit
 
 
+#cmsg = open("cmsg") # read text is default mode for open, we don't need to write anything
+# while True:
+#     msg = cmsg.read()
+#     if msg == '':
+#         continue
+#     else:
+#         msg = msg.split(" ")
+#         node = msg[1]
+#         cat = msg[2]
+#         if msg[0] == "F":
+#             # mouse found, make other cat search the same node
+#             break
+#         elif msg[0] == "G":
+#             # cat got the mouse, stop
+#             pass
+#             sys.exit(cat+" caught the mouse in node "+node)
+#         else:
+#             print ("thats weird")
+#             break
 
 
-# subprocess run ssh chase_cat.py S ei-F-cat
