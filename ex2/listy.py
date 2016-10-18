@@ -9,12 +9,13 @@ cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "w")
 # write message to cmsg
 # if message was G, quit: maybe use a condition for this?
 def writemsg(cs, addr):
-    while True:
-        print("t")
-        msg = cs.recv(1024)
-        if not msg:
-            break
-    #msg = str(msg.decode("utf-8"))
+    # while True:
+    #     print("t")
+    #     msg = cs.recv(1024)
+    #     if not msg:
+    #         break
+    # #msg = str(msg.decode("utf-8"))
+    msg = cs.recv(1024)
     dmsg = msg.decode("utf-8")
     smsg = str(dmsg)
     print(smsg)
