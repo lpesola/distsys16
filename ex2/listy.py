@@ -14,7 +14,7 @@ def writemsg(cs, addr):
     global lock
     global cmsg
     lock.acquire()
-    cmsg.write(msg)
+    cmsg.write(msg+"\n")
     cmsg.flush()
     print("release lock")
     lock.release()
