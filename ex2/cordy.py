@@ -13,8 +13,8 @@ def search(name):
         node =  nodes.get()
         print (name +"tries to connect to"+ node)
         # 0 = found, 1 = not found
-        sshstring = "ssh "+node+" -f python3 distsys16/ex2/chase_cat.py S "+name
-        r = subprocess.call(sshstring, shell=True)
+        command = "python3 distsys16/ex2/chase_cat.py S "+name
+        r = subprocess.call(["ssh", node, command])
         print(str(r)+"\n")
     else:
         return
