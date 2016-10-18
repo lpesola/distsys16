@@ -14,7 +14,7 @@ def search(name):
         print (name +"tries to connect to"+ node)
         # 0 = found, 1 = not found
         #
-        r = subprocess.call(["ssh", "lpesola@"+node, "python3 distsys16/ex2/chase_cat.py S "+name])
+        r = subprocess.call(["ssh", "lpesola@"+node, "python3 distsys16/ex2/chase_cat.py S "+name], shell=True)
         print(str(r)+"\n")
     else:
         return
