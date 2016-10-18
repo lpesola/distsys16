@@ -3,7 +3,7 @@ import threading
 import socket
 
 lock = threading.Lock()
-cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "w")
+cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "a")
 
 # assumption: the message fits in 1024 bytes AND will be received at once (should hold in this case)
 # write message to cmsg
