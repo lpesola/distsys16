@@ -39,8 +39,8 @@ jazzy.start()
 # F -> make other cat search the same node
 # G -> quit
 
-
-#cmsg = open("cmsg") # read text is default mode for open, we don't need to write anything
+# assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
+cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg") # read text is default mode for open, we don't need to write anything
 # while True:
 #     msg = cmsg.read()
 #     if msg == '':

@@ -2,16 +2,24 @@
 import threading
 import socket
 
+lock = threading.Lock()
+cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "w")
+
+# read stream until we have the entire message
+# write message to cmsg
+# if message was G, quit: maybe use a condition for this?
 def writemsg(cs, addr):
     while True:
         msg = cs.recv(1024)
         if not msg:
             break
         print(str(msg.decode("utf-8")))
-
-# read stream until we have the entire message
-# write message to cmsg
-# if message was G, quit: maybe use a condition for this?
+    global lock
+    global cmsg
+    lock.acquire()
+    cmsg.write(msg)
+    cmsg.flush()
+    lock.release()
 
 pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(pn.readline().strip())
