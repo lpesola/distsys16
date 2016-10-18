@@ -14,13 +14,10 @@ lock = threading.Lock()
 def die(s, addr):
     # attack on the mouse "should take 6 seconds" so we wait (though since "the cat will wait 8 seconds for the ouch message"
     # it is a bit unclear whether this 6 seconds is already included in the cat's 8 second wait)
-    print("in thread, sleep")
     time.sleep(6)
     print("woke up")
-    f = s.makefile("rw")
-    print("now has a file")
-    msg = f.readline()
-    print("read a line")
+    msg = s.recv(1024)
+    print("read a line "+msg)
     if msg == "MEOW":
         f.write("ouch")
         f.flush()
@@ -47,18 +44,13 @@ try:
 except Exception as e:
     print (str(e))
 
-i = 0
 while alive:
     # there should be only one connection incoming for the cat
     s.listen(2)
     (cs, addr) = s.accept()
-    print("round "+str(i))
-    i += 1
-    mouset = threading.Thread(target=die, args=(cs, addr))
-    mouset.start()
-    mouset.join()
-    s.close()
+    die(cs, addr)
 
+s.close()
 
 
 
