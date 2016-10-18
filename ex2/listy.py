@@ -20,9 +20,10 @@ def writemsg(cs, addr):
     global lock
     global cmsg
     lock.acquire()
-    print ("got lock, msg: "+msg)
+    print ("got lock, msg: "+smsg)
     #cmsg.write(msg)
     #cmsg.flush()
+    print("release lock")
     lock.release()
 
 pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
