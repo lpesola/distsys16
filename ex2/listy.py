@@ -4,7 +4,7 @@ import socket
 
 lock = threading.Lock()
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "a")
-
+mousegotten = False
 # assumption: the message fits in 1024 bytes AND will be received at once (should hold in this case)
 # write message to cmsg
 # if message was G, quit: maybe use a condition for this?
@@ -16,10 +16,13 @@ def writemsg(cs, addr):
     lock.acquire()
     cmsg.write(msg)
     cmsg.flush()
+    if msg[0] == "G":
+        print("gotten   ")
+        global mousegotten
+        mousegotten = False
     print("release lock")
     lock.release()
-    if msg[0] == "G":
-        return 
+        return
 
 pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(pn.readline().strip())
