@@ -16,13 +16,14 @@ def writemsg(cs, addr):
     lock.acquire()
     cmsg.write(msg)
     cmsg.flush()
+    lock.release()
     if msg[0] == "G":
         print("gotten   ")
         global mousegotten
         mousegotten = False
-    print("release lock")
-    lock.release()
         return
+
+
 
 pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(pn.readline().strip())
@@ -34,7 +35,6 @@ while True:
     print("listening")
     s.listen(3)
     (cs, addr) = s.accept()
-    print("got conn")
     ct = threading.Thread(target=writemsg, args=(cs, addr))
     ct.start()
 
