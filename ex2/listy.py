@@ -10,7 +10,7 @@ cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "a")
 # if message was G, quit: maybe use a condition for this?
 def writemsg(cs, addr):
     msg = cs.recv(1024)
-    msg = str(msg.decode("utf-8"))
+    msg = str(msg.decode("utf-8")).rstrip()
     global lock
     global cmsg
     lock.acquire()
@@ -18,6 +18,8 @@ def writemsg(cs, addr):
     cmsg.flush()
     print("release lock")
     lock.release()
+    if msg[0] == "G":
+        return 
 
 pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
 portno = int(pn.readline().strip())
@@ -32,3 +34,6 @@ while True:
     print("got conn")
     ct = threading.Thread(target=writemsg, args=(cs, addr))
     ct.start()
+
+## make sure a) listy actually quits at some point
+## ######### b) whatever is that newline in the beginning of cmsg???
