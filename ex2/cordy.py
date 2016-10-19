@@ -62,7 +62,7 @@ while True:
          cat = msg[2]
          if msg[0] == "F":
              fcount += 1
-             print("F! "+fcount)
+             print("F! "+str(fcount))
              if fcount == 1:
                  # make other cat search for the same node
                  if cat == "catty":
