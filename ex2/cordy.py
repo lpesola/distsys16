@@ -27,9 +27,9 @@ n = open("ukkonodes", "r")
 for line in n:
     nodes.put(line.rstrip())
 
-catty = threading.Thread(target=search, args=("catty"))
+catty = threading.Thread(target=search, args=("catty",))
 catty.daemon = True
-jazzy = threading.Thread(target=search, args=("jazzy"))
+jazzy = threading.Thread(target=search, args=("jazzy",))
 jazzy.daemon = True
 catty.start()
 jazzy.start()
