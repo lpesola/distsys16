@@ -13,7 +13,6 @@ def sendmsg(msg):
     global portno
     ls.connect((listy, portno))
     ls.send(bytes(msg, "utf-8"))
-    print("sent " + msg)
 
 def attack(name):
     # connect to mouse & send meow

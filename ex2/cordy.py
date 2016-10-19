@@ -55,14 +55,12 @@ while True:
          continue
      else:
          lock.acquire()
-         print("THIS IS WHAT WAS IN TEH FILE:"+msg+"THE END")
          lock.release()
          msg = msg.split(" ")
          node = msg[1]
          cat = msg[2]
          if msg[0] == "F":
              fcount += 1
-             print("F! "+str(fcount))
              if fcount == 1:
                  # make other cat search for the same node
                  if cat == "catty":
@@ -76,7 +74,5 @@ while True:
              # cat got the mouse, stop
              pass
              sys.exit(cat+" caught the mouse in node "+node)
-         else:
-             print ("thats weird")
 
 

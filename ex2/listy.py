@@ -18,10 +18,9 @@ def writemsg(cs, addr):
     cmsg.flush()
     lock.release()
     if msg[0] == "G":
-        print("gotten   ")
         global mousegotten
         mousegotten = True
-        return
+    return
 
 
 
@@ -31,12 +30,12 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), portno))
 
 # listen for incoming connections, max should be 3 (2 x F and 1 x G)
-while True:
-    print("listening")
+# the connections should not be simultaneous since the second cat cannot find the mouse before listy has informed cordy about it: that's why the join
+while mousegotten == False:
     s.listen(3)
     (cs, addr) = s.accept()
     ct = threading.Thread(target=writemsg, args=(cs, addr))
+    ct.daemon = True
     ct.start()
+    ct.join()
 
-## make sure a) listy actually quits at some point
-## ######### b) whatever is that newline in the beginning of cmsg???
