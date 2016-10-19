@@ -16,7 +16,7 @@ def sendmsg(msg):
 
 def attack(name):
     # connect to mouse & send meow
-    # wait for ouch 8 seconds
+    # wait for ouch 8 seconds (the 6 seconds the attack takes takes place in mouse.py (this wasn't very clear from the instructions)
     # send message G
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -40,7 +40,7 @@ def search(name):
     # else exit code 2
     uname = subprocess.check_output("whoami").decode("utf-8").rstrip()
     r = subprocess.call([" ps -u "+uname+" -f | grep '[m]ouse.py'"], shell=True)
-    time.sleep(3) # CHANGE THIS TO 12 FOR FINAL VERSION, during testing searching should be faster
+    time.sleep(12)
     # 0 = success, 1 = not found
     if r == 0:
         msg = "F "+socket.gethostname()+" "+name

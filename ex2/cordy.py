@@ -1,7 +1,6 @@
 import queue
 import subprocess
 import threading
-import time # MUISTA OTTAA POIS KUN TESTI UKOLLA
 import sys
 
 # Queue is thread safe so we can use it to store the nodes the cats need to search

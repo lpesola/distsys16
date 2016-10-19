@@ -13,10 +13,10 @@ alive = True
 def die(s, addr):
     # attack on the mouse "should take 6 seconds" so we wait (though since "the cat will wait 8 seconds for the ouch message"
     # it is a bit unclear whether this 6 seconds is already included in the cat's 8 second wait)
-    time.sleep(6)
     msg = s.recv(1024)
     msg = str(msg.decode("utf-8"))
     if msg == "MEOW":
+        time.sleep(6)
         s.send(b'OUCH')
         global alive
         alive = False
