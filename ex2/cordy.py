@@ -43,7 +43,7 @@ jazzy.start()
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
      msg = cmsg.read()
-     if msg == '' or msg == "\n":
+     if msg == '':
          continue
      else:
          msg = msg.split(" ")
