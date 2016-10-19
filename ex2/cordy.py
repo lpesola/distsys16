@@ -62,12 +62,16 @@ while True:
          cat = msg[2]
          if msg[0] == "F":
              fcount += 1
+             print("F! "+fcount)
+             if fcount == 1:
+                 # make other cat search for the same node
+                 if cat == "catty":
+                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py S jazzy"])
+                 elif cat == "jazzy":
+                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py S catty"])
              if fcount == 2:
-                 # we can attack
-                if cat == "catty":
-                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A jazzy"])
-                elif cat == "jazzy":
-                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
+                 # whichever cat can attack: we'll just stick to the same cat
+                r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
          elif msg[0] == "G":
              # cat got the mouse, stop
              pass
