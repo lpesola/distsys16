@@ -33,17 +33,12 @@ jazzy.daemon = True
 catty.start()
 jazzy.start()
 
-# commented out for first test run
 
 # read cmsg, wait until you find a line beginning with an F(ound the mouse) or G(ot the mouse)
 # F/G ukkoXXX catname
 # F -> make other cat search the same node
 # if F was 2nd, make cat attack
 # G -> quit
-
-## REMOVE
-lock = threading.Lock()
-## REMOVE
 
 # assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
 fcount = 0
@@ -53,8 +48,6 @@ while True:
      if msg == '' or msg=="\n":
          continue
      else:
-         lock.acquire()
-         lock.release()
          msg = msg.split(" ")
          node = msg[1]
          cat = msg[2]
