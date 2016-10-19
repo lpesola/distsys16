@@ -27,8 +27,10 @@ n = open("ukkonodes", "r")
 for line in n:
     nodes.put(line.rstrip())
 
-catty = threading.Thread(target=search, args=("catty",))
-jazzy = threading.Thread(target=search, args=("jazzy",))
+catty = threading.Thread(target=search, args=("catty"))
+catty.daemon = True
+jazzy = threading.Thread(target=search, args=("jazzy"))
+jazzy.daemon = True
 catty.start()
 jazzy.start()
 
@@ -39,13 +41,20 @@ jazzy.start()
 # F -> make other cat search the same node
 # G -> quit
 
+## REMOVE
+lock = threading.Lock()
+## REMOVE
+
 # assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
      msg = cmsg.read()
-     if msg == '':
+     if msg == '' or msg=="\n":
          continue
      else:
+         lock.acquire()
+         print("THIS IS WHAT WAS IN TEH FILE:"+msg+"THE END")
+         lock.release()
          msg = msg.split(" ")
          node = msg[1]
          cat = msg[2]
@@ -62,6 +71,5 @@ while True:
              sys.exit(cat+" caught the mouse in node "+node)
          else:
              print ("thats weird")
-             break
 
 
