@@ -20,7 +20,7 @@ def writemsg(cs, addr):
     if msg[0] == "G":
         print("gotten   ")
         global mousegotten
-        mousegotten = False
+        mousegotten = True
         return
 
 
