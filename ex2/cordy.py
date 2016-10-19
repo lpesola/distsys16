@@ -39,6 +39,7 @@ jazzy.start()
 # read cmsg, wait until you find a line beginning with an F(ound the mouse) or G(ot the mouse)
 # F/G ukkoXXX catname
 # F -> make other cat search the same node
+# if F was 2nd, make cat attack
 # G -> quit
 
 ## REMOVE
@@ -46,6 +47,7 @@ lock = threading.Lock()
 ## REMOVE
 
 # assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
+fcount = 0
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
      msg = cmsg.read()
@@ -59,12 +61,13 @@ while True:
          node = msg[1]
          cat = msg[2]
          if msg[0] == "F":
-             # mouse found, make other cat search the same node
-             print("mouse was found")
-             if cat == "catty":
-                 r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A jazzy"])
-             elif cat == "jazzy":
-                 r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
+             fcount += 1
+             if fcount == 2:
+                 # we can attack
+                if cat == "catty":
+                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A jazzy"])
+                elif cat == "jazzy":
+                     r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
          elif msg[0] == "G":
              # cat got the mouse, stop
              pass
