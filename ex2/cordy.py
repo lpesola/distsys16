@@ -1,3 +1,5 @@
+# lpesola 013470892
+
 import queue
 import subprocess
 import threading
@@ -10,7 +12,6 @@ nodes = queue.Queue()
 def search(name):
     while not nodes.empty():
         node =  nodes.get()
-        print (name +" "+ node)
         # 0 = found, 1 = not found
         command = "python3 distsys16/ex2/chase_cat.py S "+name
         r = subprocess.call(["ssh", node, command])
@@ -21,7 +22,6 @@ def search(name):
         else:
             sys.exit("something unexpected happened")
 
-# main starts here
 n = open("ukkonodes", "r")
 for line in n:
     nodes.put(line.rstrip())
@@ -35,9 +35,9 @@ jazzy.start()
 
 
 # read cmsg, wait until you find a line beginning with an F(ound the mouse) or G(ot the mouse)
-# F/G ukkoXXX catname
-# F -> make other cat search the same node
-# if F was 2nd, make cat attack
+# message format: F/G ukkoXXX catname
+# 1st F -> make other cat search the same node
+# 2n F -> make catty attack
 # G -> quit
 
 # assumption: cmsg file exists AND it is empty (this was not specified in the assignment text)

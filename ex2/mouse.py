@@ -5,6 +5,7 @@ import threading
 import time
 import sys
 
+# when the mouse dies, this becomes false and we know it's safe to quit
 alive = True
 
 

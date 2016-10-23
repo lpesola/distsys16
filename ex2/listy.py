@@ -1,13 +1,14 @@
 # lpesola 013470892
+
 import threading
 import socket
 
 lock = threading.Lock()
 cmsg = open("cmsg", "a")
+# when we encounter G in one of the messages we receive, we will know it's safe to quit
 mousegotten = False
 # assumption: the message fits in 1024 bytes AND will be received at once (should hold in this case)
-# write message to cmsg
-# if message was G, quit: maybe use a condition for this?
+# write message to cmsg - if message was G, quit
 def writemsg(cs, addr):
     msg = cs.recv(1024)
     msg = str(msg.decode("utf-8")).rstrip()
