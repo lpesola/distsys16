@@ -7,7 +7,7 @@ import socket
 portno = 0
 
 def sendmsg(msg):
-    f = open("/cs/home/lpesola/distsys16/ex2/listy_location")
+    f = open("listy_location")
     listy = f.readline().rstrip()
     ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     global portno
@@ -49,7 +49,7 @@ def search(name):
 
 
 # main begins
-f = open("/cs/home/lpesola/distsys16/ex2/port_number")
+f = open("port_number")
 portno = int(f.readline().rstrip())
 f.close()
 

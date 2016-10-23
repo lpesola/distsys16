@@ -3,7 +3,7 @@ import threading
 import socket
 
 lock = threading.Lock()
-cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "a")
+cmsg = open("cmsg", "a")
 mousegotten = False
 # assumption: the message fits in 1024 bytes AND will be received at once (should hold in this case)
 # write message to cmsg
@@ -24,7 +24,7 @@ def writemsg(cs, addr):
 
 
 
-pn = open("/cs/home/lpesola/distsys16/ex2/port_number")
+pn = open("port_number")
 portno = int(pn.readline().strip())
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), portno))
