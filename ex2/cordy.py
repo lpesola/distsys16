@@ -40,7 +40,7 @@ jazzy.start()
 # if F was 2nd, make cat attack
 # G -> quit
 
-# assumption: cmsg file exists AND that it is empty (this was not specified in the assignment text
+# assumption: cmsg file exists AND it is empty (this was not specified in the assignment text)
 fcount = 0
 cmsg = open("/cs/home/lpesola/distsys16/ex2/cmsg", "r") # read text is default mode for open, we don't need to write anything
 while True:
@@ -60,7 +60,7 @@ while True:
                  elif cat == "jazzy":
                      r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py S catty"])
              if fcount == 2:
-                 # whichever cat can attack: we'll just stick to the same cat
+                 # whichever cat can attack: we'll just stick to the same cat since this was not specified
                 r = subprocess.call(["ssh", node, "python3 distsys16/ex2/chase_cat.py A catty"])
          elif msg[0] == "G":
              # cat got the mouse, stop
